@@ -1,16 +1,21 @@
 import React from "react";
 import "./styles.css";
 
-// its a jsx\
- 
 
-var userName =prompt("your name");
-var color = "blue";
+let likeCounter = 0;
 
 export default function App() {
+
+  const likeClickHandler = () => {
+    likeCounter++; //processing
+    console.log("liked " , likeCounter); //output
+
+  }
   return (
     <div className="App">
-      <h1 style={{ backgroundColor: color }}>Welcome {userName}</h1>
+      <h1>inside out</h1>
+      {/* click on btn is input(interacting with react) */}
+      <button onClick={likeClickHandler}>Like Me</button>
     </div>
   );
 }
