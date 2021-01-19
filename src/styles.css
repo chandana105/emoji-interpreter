@@ -5,10 +5,19 @@
 
 input {
   padding: 1rem;
-  width: 80%;
+  width: 10%;
 }
 
 /* odd line color */
 /* li:nth-child(2n+1) {
   background: silver
 } */
+
+
+li {
+  list-style-type: none;
+  padding : 1rem;
+  display: inline;
+  font-size: 2rem;
+  cursor: pointer;
+}

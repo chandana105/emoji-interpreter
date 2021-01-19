@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import "./styles.css";
 
-let shoppingList = ["milk", "eggs", "bread", "flowers", "colors", "dress"];
-let userName = "chandana";
-let userLoggedIn = true;
-
 const emojiDictionary = {
   "🙈": "See-No-Evil Monkey",
   "🐷": " Pig Face",
@@ -16,76 +12,56 @@ const emojiDictionary = {
   "😊": "Smiling Face with Smiling Eyes"
 };
 
+// converting object into array
+// console.log(Object.keys(emojiDictionary));
+
+// we got array
+const emojisWeKnow = Object.keys(emojiDictionary);
+
 export default function App() {
   const [meaning, setMeaning] = useState("");
 
   const emojiInputHandler = (event) => {
+    //processing
     let userInput = event.target.value;
 
     // let meaning = emojiDictionary[userInput];
 
     if (userInput in emojiDictionary) {
-      setMeaning(emojiDictionary[userInput]);
+      setMeaning(emojiDictionary[userInput]); //reactcall to show output
     } else {
       setMeaning(`we don't have this in our database`);
-
-      // meaning = `we don't have this in our database`
-    }
-
-    // if (meaning === undefined) {
-    //   meaning = `we don't have this in our database`
-    // }
-
-    // // setInputValue(event.target.value)
-    // // console.log(meaning);
-    // setMeaning(meaning);
-  };
-
-  // conditional rendering in jsx
-  const getUserMessage = () => {
-    if (userLoggedIn) {
-      return <em> {userName} </em>;
-    } else {
-      return "user";
     }
   };
 
-  const inStyle = (index) => {
-    if (index % 2) {
-      return { backgroundColor: "white" };
-    } else {
-      return { backgroundColor: "silver" };
-    }
+    //processing
+  const listClickHandler = (item) => { 
+    console.log(item);
+    setMeaning(emojiDictionary[item]);
   };
 
-  const listClickHandler = (item) => {
-    console.log('clicked' ,item)
-  }
 
-  let list = shoppingList.map((item, index) => {
+
+  let emojis = emojisWeKnow.map((item, index) => {
     // console.log(item);
-
     return (
-      <li onClick={() => listClickHandler(item)} style={inStyle(index)} key={index}>
+      <li onClick={() => listClickHandler(item)} key={index}>
         {item}
       </li>
     );
   });
 
+
   return (
     <div className="App">
       <h1>inside out</h1>
       <input placeholder="put an emoji here" onChange={emojiInputHandler} />
-      <h2> {meaning} </h2>
-      <h3> list</h3>
-      {<ol>{list}</ol>}
-      <h4>Welcome {getUserMessage()}</h4>
+      <h2> {meaning} </h2> 
+      {/* actual output set by react using usestate */}
+      <h3> emojis we know</h3>
+      {<ul>{emojis}</ul>}
     </div>
   );
 }
 
 // VISER :- View --> Interact --> State in Event handler --> React to it /Render
-
-// for (var i =0; i < shoppingList.length; i++) {
-// shoppingList[i]
-// }
