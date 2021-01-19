@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./styles.css";
 
-let shoppingList = ["milk", "eggs", "bread"];
+let shoppingList = ["milk", "eggs", "bread", "flowers", "colors", "dress"];
+let userName = "chandana";
+let userLoggedIn = true;
 
 const emojiDictionary = {
   "🙈": "See-No-Evil Monkey",
@@ -39,9 +41,31 @@ export default function App() {
     // setMeaning(meaning);
   };
 
-  let list = shoppingList.map((item) => {
-    console.log(item);
-    return <li>{item}</li>;
+  // conditional rendering in jsx
+  const getUserMessage = () => {
+    if (userLoggedIn) {
+      return <em> {userName} </em>;
+    } else {
+      return "user";
+    }
+  };
+
+  const inStyle = (index) => {
+    if (index % 2) {
+      return { backgroundColor: "white" };
+    } else {
+      return { backgroundColor: "silver" };
+    }
+  };
+
+  let list = shoppingList.map((item, index) => {
+    // console.log(item);
+
+    return (
+      <li style={inStyle(index)} key={index}>
+        {item}
+      </li>
+    );
   });
 
   return (
@@ -50,7 +74,8 @@ export default function App() {
       <input placeholder="put an emoji here" onChange={emojiInputHandler} />
       <h2> {meaning} </h2>
       <h3> list</h3>
-      {<ul>{list}</ul>}
+      {<ol>{list}</ol>}
+      <h4>Welcome {getUserMessage()}</h4>
     </div>
   );
 }
