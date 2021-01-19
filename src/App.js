@@ -58,11 +58,15 @@ export default function App() {
     }
   };
 
+  const listClickHandler = (item) => {
+    console.log('clicked' ,item)
+  }
+
   let list = shoppingList.map((item, index) => {
     // console.log(item);
 
     return (
-      <li style={inStyle(index)} key={index}>
+      <li onClick={() => listClickHandler(item)} style={inStyle(index)} key={index}>
         {item}
       </li>
     );
